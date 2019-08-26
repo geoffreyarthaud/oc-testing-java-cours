@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class CalculatorTest {
+public class CalculatorTest {
 
 	@Test
-	void testAddTwoPositiveNumbers() {
+	public void testAddTwoPositiveNumbers() {
 		// Arrange
 		int a = 2;
 		int b = 3;
@@ -18,6 +18,20 @@ class CalculatorTest {
 
 		// Assert
 		assertEquals(5, somme);
+	}
+
+	@Test
+	public void multiply_shouldReturnTheProduct_ofTwoIntegers() {
+		// Arrange
+		int a = 42;
+		int b = 11;
+		Calculator calculator = new Calculator();
+
+		// Act
+		int produit = calculator.multiply(a, b);
+
+		// Assert
+		assertEquals(462, produit);
 	}
 
 }
