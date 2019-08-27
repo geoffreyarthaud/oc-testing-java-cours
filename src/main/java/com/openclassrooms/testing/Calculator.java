@@ -10,4 +10,12 @@ public class Calculator {
 		return a * b;
 	}
 
+	public void longCalculation() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
