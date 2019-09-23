@@ -4,37 +4,49 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.MessageFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@ExtendWith(LoggingExtension.class)
 public class CalculatorTest {
 
 	private static Instant startedAt;
 
 	private Calculator calculatorUnderTest;
 
+	private Logger logger;
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
 	@BeforeEach
 	public void initCalculator() {
-		System.out.println("Appel avant chaque test");
+		logger.info("Appel avant chaque test");
 		calculatorUnderTest = new Calculator();
 	}
 
 	@AfterEach
 	public void undefCalculator() {
-		System.out.println("Appel après chaque test");
+		logger.info("Appel après chaque test");
 		calculatorUnderTest = null;
 	}
 
@@ -141,6 +153,18 @@ public class CalculatorTest {
 		int number = 0;
 		Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
 		assertThat(actualDigits).containsExactly(0);
+	}
+
+	@Disabled("Stoppé car cela échoue tous les mardis")
+	@Test
+	public void testDate() {
+		// GIVEN
+		LocalDateTime dateTime = LocalDateTime.now();
+		
+		// WHEN
+		
+		// THEN
+		assertThat(dateTime.getDayOfWeek()).isNotEqualTo(DayOfWeek.TUESDAY);
 	}
 
 }
