@@ -38,7 +38,12 @@ public class Calculator {
 	}
 	
 	public int fact(int a) {
-		// MAUVAISE IMPLEMENTATION de la fonction factorielle
+		if (a < 0 || a > 12) {
+			throw new IllegalArgumentException("Doit être compris entre 0 et 12.");
+		}
+		if (a <= 1) {
+			return a;
+		}
 		return a*fact(a-1);
 	}
 

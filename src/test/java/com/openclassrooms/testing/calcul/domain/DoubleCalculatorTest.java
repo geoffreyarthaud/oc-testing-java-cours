@@ -1,6 +1,7 @@
 package com.openclassrooms.testing.calcul.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class DoubleCalculatorTest {
@@ -12,6 +13,7 @@ public class DoubleCalculatorTest {
 	}
 	
 	@Test
+	@Disabled("Test ambigu et hors limite du type double")
 	public void subTwoDoubleNumbers_shouldReturnsTheCorrectAnswer() {
 		// GIVEN
 		

@@ -32,8 +32,6 @@ public class CalculatorTest {
 	private static Instant startedAt;
 
 	private Calculator calculatorUnderTest;
-	
-	private int cacheFactorial;
 
 	private Logger logger;
 
@@ -62,19 +60,19 @@ public class CalculatorTest {
 	@AfterAll
 	public static void showTestDuration() {
 		System.out.println("Appel après tous les tests");
-		Instant endedAt = Instant.now();
-		long duration = Duration.between(startedAt, endedAt).toMillis();
+		final Instant endedAt = Instant.now();
+		final long duration = Duration.between(startedAt, endedAt).toMillis();
 		System.out.println(MessageFormat.format("Durée des tests : {0} ms", duration));
 	}
 
 	@Test
 	public void testAddTwoPositiveNumbers() {
 		// Arrange
-		int a = 2;
-		int b = 3;
+		final int a = 2;
+		final int b = 3;
 
 		// Act
-		int somme = calculatorUnderTest.add(a, b);
+		final int somme = calculatorUnderTest.add(a, b);
 
 		// Assert
 		assertThat(somme).isEqualTo(5);
@@ -84,11 +82,11 @@ public class CalculatorTest {
 	@Test
 	public void multiply_shouldReturnTheProduct_ofTwoIntegers() {
 		// Arrange
-		int a = 42;
-		int b = 11;
+		final int a = 42;
+		final int b = 11;
 
 		// Act
-		int produit = calculatorUnderTest.multiply(a, b);
+		final int produit = calculatorUnderTest.multiply(a, b);
 
 		// Assert
 		assertEquals(462, produit);
@@ -100,7 +98,7 @@ public class CalculatorTest {
 		// Arrange -- Tout est prêt !
 
 		// Act -- Multiplier par zéro
-		int actualResult = calculatorUnderTest.multiply(arg, 0);
+		final int actualResult = calculatorUnderTest.multiply(arg, 0);
 
 		// Assert -- ça vaut toujours zéro !
 		assertEquals(0, actualResult);
@@ -112,7 +110,7 @@ public class CalculatorTest {
 		// Arrange -- Tout est prêt !
 
 		// Act
-		int actualResult = calculatorUnderTest.add(arg1, arg2);
+		final int actualResult = calculatorUnderTest.add(arg1, arg2);
 
 		// Assert
 		assertEquals(expectResult, actualResult);
@@ -133,28 +131,28 @@ public class CalculatorTest {
 	@Test
 	public void listDigits_shouldReturnsTheListOfDigits_ofPositiveInteger() {
 		// GIVEN
-		int number = 95897;
+		final int number = 95897;
 
 		// WHEN
-		Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
+		final Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
 
 		// THEN
 		assertThat(actualDigits).containsExactlyInAnyOrder(9, 5, 8, 7);
-		Set<Integer> expectedDigits = Stream.of(5, 7, 8, 9).collect(Collectors.toSet());
+		final Set<Integer> expectedDigits = Stream.of(5, 7, 8, 9).collect(Collectors.toSet());
 		assertEquals(expectedDigits, actualDigits);
 	}
 
 	@Test
 	public void listDigits_shouldReturnsTheListOfDigits_ofNegativeInteger() {
-		int number = -124432;
-		Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
+		final int number = -124432;
+		final Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
 		assertThat(actualDigits).containsExactlyInAnyOrder(1, 2, 3, 4);
 	}
 
 	@Test
 	public void listDigits_shouldReturnsTheListOfZero_ofZero() {
-		int number = 0;
-		Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
+		final int number = 0;
+		final Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
 		assertThat(actualDigits).containsExactly(0);
 	}
 
@@ -162,50 +160,49 @@ public class CalculatorTest {
 	@Test
 	public void testDate() {
 		// GIVEN
-		LocalDateTime dateTime = LocalDateTime.now();
-		
+		final LocalDateTime dateTime = LocalDateTime.now();
+
 		// WHEN
-		
+
 		// THEN
 		assertThat(dateTime.getDayOfWeek()).isNotEqualTo(DayOfWeek.TUESDAY);
 	}
-	
+
 	@Test
 	public void fact12_shouldReturnsTheCorrectAnswer() {
 		// GIVEN
-		int number = 12;
-		
+		final int number = 12;
+
 		// WHEN
-		// Calculer 12! et sauve la valeur pour un autre test
-		cacheFactorial = calculatorUnderTest.fact(number);
-		
+		final int cacheFactorial = calculatorUnderTest.fact(number);
+
 		// THEN
-		assertThat(cacheFactorial).isEqualTo(12*11*10*9*8*7*6*5*4*3*2);
-		
+		assertThat(cacheFactorial).isEqualTo(12 * 11 * 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2);
+
 	}
-	
+
 	@Test
 	public void digitsSetOfFact12_shouldReturnsTheCorrectAnswser() {
 		// GIVEN
-		// 12! est mis en cache par le test précédent
-		
+		final int cacheFactorial = 479001600;
+
 		// WHEN
-		Set<Integer> actualDigits = calculatorUnderTest.digitsSet(cacheFactorial);
-		
+		final Set<Integer> actualDigits = calculatorUnderTest.digitsSet(cacheFactorial);
+
 		// THEN
 		assertThat(actualDigits).containsExactlyInAnyOrder(0, 1, 4, 6, 7, 9);
 	}
-	
+
 	@Test
 	public void multiplyAndDivide_shouldBeIdentity() {
 		// GIVEN
-		Random r = new Random();
-		int a = r.nextInt() % 100;
-		int b = r.nextInt() % 3;
-		
+		final Random r = new Random();
+		final int a = 1 + r.nextInt(100);
+		final int b = 1 + r.nextInt(3);
+
 		// WHEN on multiplie a par b puis on divise par b
-		int c = calculatorUnderTest.divide(calculatorUnderTest.multiply(a, b), b);
-		
+		final int c = calculatorUnderTest.divide(calculatorUnderTest.multiply(a, b), b);
+
 		// THEN on ré-obtient a
 		assertThat(c).isEqualTo(a);
 	}
