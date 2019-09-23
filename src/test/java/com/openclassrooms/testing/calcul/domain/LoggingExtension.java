@@ -1,4 +1,4 @@
-package com.openclassrooms.testing;
+package com.openclassrooms.testing.calcul.domain;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

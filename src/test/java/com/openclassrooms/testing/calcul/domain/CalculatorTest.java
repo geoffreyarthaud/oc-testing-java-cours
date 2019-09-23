@@ -1,4 +1,4 @@
-package com.openclassrooms.testing;
+package com.openclassrooms.testing.calcul.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,6 +8,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,6 +32,8 @@ public class CalculatorTest {
 	private static Instant startedAt;
 
 	private Calculator calculatorUnderTest;
+	
+	private int cacheFactorial;
 
 	private Logger logger;
 
@@ -165,6 +168,46 @@ public class CalculatorTest {
 		
 		// THEN
 		assertThat(dateTime.getDayOfWeek()).isNotEqualTo(DayOfWeek.TUESDAY);
+	}
+	
+	@Test
+	public void fact12_shouldReturnsTheCorrectAnswer() {
+		// GIVEN
+		int number = 12;
+		
+		// WHEN
+		// Calculer 12! et sauve la valeur pour un autre test
+		cacheFactorial = calculatorUnderTest.fact(number);
+		
+		// THEN
+		assertThat(cacheFactorial).isEqualTo(12*11*10*9*8*7*6*5*4*3*2);
+		
+	}
+	
+	@Test
+	public void digitsSetOfFact12_shouldReturnsTheCorrectAnswser() {
+		// GIVEN
+		// 12! est mis en cache par le test précédent
+		
+		// WHEN
+		Set<Integer> actualDigits = calculatorUnderTest.digitsSet(cacheFactorial);
+		
+		// THEN
+		assertThat(actualDigits).containsExactlyInAnyOrder(0, 1, 4, 6, 7, 9);
+	}
+	
+	@Test
+	public void multiplyAndDivide_shouldBeIdentity() {
+		// GIVEN
+		Random r = new Random();
+		int a = r.nextInt() % 100;
+		int b = r.nextInt() % 3;
+		
+		// WHEN on multiplie a par b puis on divise par b
+		int c = calculatorUnderTest.divide(calculatorUnderTest.multiply(a, b), b);
+		
+		// THEN on ré-obtient a
+		assertThat(c).isEqualTo(a);
 	}
 
 }
