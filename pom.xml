@@ -6,6 +6,7 @@
 	<artifactId>calculator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
+		<dep.junit.version>5.5.1</dep.junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
@@ -13,8 +14,20 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${dep.junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.5.1</version>
+			<version>${dep.junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.1.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
