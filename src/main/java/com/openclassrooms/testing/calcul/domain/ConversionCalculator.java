@@ -14,41 +14,51 @@ public class ConversionCalculator {
 
 	/**
 	 * Convertir centigrade en fahrenheit.
-	 * 
+	 *
 	 * @param celsiusTemperature à convertir
 	 * @return fahrenheit temperature.
 	 */
-	public final Double celsiusToFahrenheit(Double celsiusTemperature) {
+	public Double celsiusToFahrenheit(Double celsiusTemperature) {
 		return celsiusTemperature * CELSIUS_FAHRENHEIT_CONVERSION_FACTOR + BASE_FAHRENHEIT;
 	}
 
 	/**
 	 * Convertir fahrenheit en centigrade
-	 * 
+	 *
 	 * @param fahrenheitTemperature à convertir
 	 * @return Centigrade temperature
 	 */
-	public final Double fahrenheitToCelsius(Double fahrenheitTemperature) {
+	public Double fahrenheitToCelsius(Double fahrenheitTemperature) {
 		return (fahrenheitTemperature - BASE_FAHRENHEIT) * CELSIUS_FAHRENHEIT_CONVERSION_FACTOR;
 	}
 
 	/**
 	 * Convertir a volume en litres en gallons.
-	 * 
+	 *
 	 * @param litreVolume à convertir
 	 * @return volume en gallons
 	 */
-	public final Double litresToGallons(Double litreVolume) {
-		return Math.ceil(litreVolume * LITRE_TO_GALLON_MULTIPLIER);
+	public Double litresToGallons(Double litreVolume) {
+		return litreVolume * LITRE_TO_GALLON_MULTIPLIER;
+	}
+
+	/**
+	 * Convertir a volume en gallons en litres.
+	 *
+	 * @param litreVolume à convertir
+	 * @return volume en gallons
+	 */
+	public Double gallonsToLitres(Double gallonsVolume) {
+		return gallonsVolume / LITRE_TO_GALLON_MULTIPLIER;
 	}
 
 	/**
 	 * Convertir un rayon en aire de disque
-	 * 
+	 *
 	 * @param radius du disque
 	 * @return aire du disque
 	 */
-	public final Double radiusToAreaOfCircle(Double radius) {
+	public final double radiusToAreaOfCircle(Double radius) {
 		return Math.PI * Math.pow(radius, POWER_OF_RADIUS);
 
 	}

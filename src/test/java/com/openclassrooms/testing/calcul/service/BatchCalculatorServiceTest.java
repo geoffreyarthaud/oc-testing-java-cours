@@ -57,8 +57,7 @@ public class BatchCalculatorServiceTest {
 	}
 
 	@Test
-	public void givenOperationsList_whenbatchCalculate_thenCallsServiceWithCorrectArguments()
-			throws IOException, URISyntaxException {
+	public void givenOperationsList_whenbatchCalculate_thenCallsServiceWithCorrectArguments() {
 		// GIVEN
 		final Stream<String> operations = Arrays.asList("2 + 2", "5 - 4", "6 x 8", "9 / 3").stream();
 		final ArgumentCaptor<CalculationModel> calculationModelCaptor = ArgumentCaptor.forClass(CalculationModel.class);
@@ -80,8 +79,7 @@ public class BatchCalculatorServiceTest {
 	}
 
 	@Test
-	public void givenOperationsList_whenbatchCalculate_thenCallsServiceAndReturnsAnswer()
-			throws IOException, URISyntaxException {
+	public void givenOperationsList_whenbatchCalculate_thenCallsServiceAndReturnsAnswer() {
 		// GIVEN
 		final Stream<String> operations = Arrays.asList("2 + 2", "5 - 4", "6 x 8", "9 / 3").stream();
 		when(calculatorService.calculate(any(CalculationModel.class)))
@@ -115,8 +113,7 @@ public class BatchCalculatorServiceTest {
 	}
 
 	@Test
-	public void givenOperationsList_whenbatchCalculate_thenCallsServiceAndReturnsAnswer2()
-			throws IOException, URISyntaxException {
+	public void givenOperationsList_whenbatchCalculate_thenCallsServiceAndReturnsAnswer2() {
 		// GIVEN
 		final Stream<String> operations = Arrays.asList("2 + 2", "5 - 4", "6 x 8", "9 / 3").stream();
 		when(calculatorService.calculate(any(CalculationModel.class)))
