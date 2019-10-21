@@ -1,9 +1,12 @@
 package com.openclassrooms.testing.calcul.service;
 
+import javax.inject.Named;
+
 import com.openclassrooms.testing.calcul.domain.Calculator;
 import com.openclassrooms.testing.calcul.domain.model.CalculationModel;
 import com.openclassrooms.testing.calcul.domain.model.CalculationType;
 
+@Named
 public class CalculatorServiceImpl implements CalculatorService {
 
 	private final Calculator calculator;

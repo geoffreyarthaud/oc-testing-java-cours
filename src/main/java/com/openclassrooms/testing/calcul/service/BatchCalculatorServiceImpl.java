@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.inject.Named;
+
 import com.openclassrooms.testing.calcul.domain.model.CalculationModel;
 
+@Named
 public class BatchCalculatorServiceImpl implements BatchCalculatorService {
 
 	private final CalculatorService calculatorService;
