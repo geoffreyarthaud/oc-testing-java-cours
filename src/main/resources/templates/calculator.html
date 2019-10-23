@@ -28,10 +28,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input type="text" th:field="*{leftArgument}" class="form-control" placeholder="First Value">
+                        <input id="left" type="text" th:field="*{leftArgument}" class="form-control" placeholder="First Value">
                     </div>
                     <div class="col">
-                        <select th:field="*{calculationType}" class="form-control form-control-lg">
+                        <select id="type" th:field="*{calculationType}" class="form-control form-control-lg">
                             <option value="ADDITION" selected="true"> + </option>
                             <option value="SUBTRACTION" selected="true"> - </option>
                             <option value="MULTIPLICATION"> x </option>
@@ -39,12 +39,12 @@
                         </select>
                     </div>
                     <div class="col">
-                        <input type="text" th:field="*{rightArgument}" class="form-control" placeholder="Second Value">
+                        <input id="right" type="text" th:field="*{rightArgument}" class="form-control" placeholder="Second Value">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary">=</button>
+                        <button id="submit" type="submit" class="btn btn-primary">=</button>
 
                     </div>
                     <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
