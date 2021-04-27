@@ -103,7 +103,7 @@ public class CalculatorTest {
 		assertEquals(expectResult, actualResult);
 	}
 
-	@Timeout(1)
+	@Timeout(5)
 	@Test
 	public void longCalcul_shouldComputeInLessThan1Second() {
 		// Arrange
