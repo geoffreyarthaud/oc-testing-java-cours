@@ -14,7 +14,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.spring.CucumberContextConfiguration;
 
+
+@CucumberContextConfiguration
 @SpringBootTest
 @AutoConfigureMockMvc
 public class CalculatorSteps {
