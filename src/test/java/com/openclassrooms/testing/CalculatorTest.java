@@ -55,7 +55,7 @@ public class CalculatorTest {
 	@Test
 	public void testAddTwoPositiveNumbers() {
 		// Arrange
-		int a = 2;
+		int a = 8;
 		int b = 3;
 
 		// Act
