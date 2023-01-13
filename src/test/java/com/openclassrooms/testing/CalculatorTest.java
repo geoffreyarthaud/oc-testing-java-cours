@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -51,14 +55,14 @@ public class CalculatorTest {
 	@Test
 	public void testAddTwoPositiveNumbers() {
 		// Arrange
-		int a = 2;
+		int a = 8;
 		int b = 3;
 
 		// Act
 		int somme = calculatorUnderTest.add(a, b);
 
 		// Assert
-		assertEquals(5, somme);
+		assertThat(somme).isEqualTo(5);
 	}
 
 	@Test
@@ -71,7 +75,8 @@ public class CalculatorTest {
 		int produit = calculatorUnderTest.multiply(a, b);
 
 		// Assert
-		assertEquals(462, produit);
+		
+		assertThat(produit).isEqualTo(462);
 	}
 
 	@ParameterizedTest(name = "{0} x 0 doit être égal à 0")
@@ -83,7 +88,8 @@ public class CalculatorTest {
 		int actualResult = calculatorUnderTest.multiply(arg, 0);
 
 		// Assert -- ça vaut toujours zéro !
-		assertEquals(0, actualResult);
+		
+		assertThat(actualResult).isEqualTo(0);
 	}
 
 	@ParameterizedTest(name = "{0} + {1} doit être égal à {2}")
@@ -95,7 +101,8 @@ public class CalculatorTest {
 		int actualResult = calculatorUnderTest.add(arg1, arg2);
 
 		// Assert
-		assertEquals(expectResult, actualResult);
+		
+		assertThat(actualResult).isEqualTo(expectResult);
 	}
 
 	@Timeout(1)
@@ -109,5 +116,20 @@ public class CalculatorTest {
 		// Assert
 		// ...
 	}
+
+	
+    @Test
+public void listDigits_shouldReturnsTheListOfDigits_ofPositiveInteger() {
+	// GIVEN
+	int number = 95897;
+
+	// WHEN
+	Set<Integer> actualDigits = calculatorUnderTest.digitsSet(number);
+
+	// THEN
+	Set<Integer> expectedDigits = Stream.of(5, 7, 8, 9).collect(Collectors.toSet());
+	assertEquals(expectedDigits, actualDigits);
+}
+
 
 }
